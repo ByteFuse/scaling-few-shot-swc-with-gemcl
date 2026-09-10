@@ -6,3 +6,17 @@
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Comfortaa', cursive, sans-serif;
 }
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color:#159957;
+  color: white !important;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.btn:hover {
+  background-color: #106e40;
+}
