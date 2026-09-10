@@ -19,6 +19,12 @@
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       {% if site.github.is_project_page %}
+        <p align="center" class="authors">
+        Louise Beyers, Batsirayi Mupamhi Ziki, Ruan van der Merwe
+        </p>
+        <p align="center" class="affiliations">
+        ByteFuse &nbsp;
+        </p>
         <a href="https://arxiv.org/abs/2605.13075" class="btn">Paper</a>
         <a href="https://github.com/ByteFuse" class="btn">Code</a>
       {% endif %}
