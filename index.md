@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Scaling few-shot spoken classification with generative meta-continual learning
 ---
 
 ## Abstract
