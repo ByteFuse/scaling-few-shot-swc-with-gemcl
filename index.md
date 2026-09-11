@@ -32,6 +32,7 @@ The order in which we learn the classes does not matter. We can learn the classe
 </p>
 <p class="caption">Figure 2: The average accuracy of GeMCL, full FT and the CH models with 95% confidence intervals.</p>
 
+The table shows some awesome things.
 
 |  | GeMCL | CH | Full FT |
 |---|:---:|:---:|:---:|
@@ -40,7 +41,6 @@ The order in which we learn the classes does not matter. We can learn the classe
 
 <p class="caption">Table 1: Per-word volatility of classification accuracy. Given accuracy in %, volatility is the mean absolute amount that accuracy changes between consecutive continual learning steps.</p>
 
-## References
 ## References
 
 1. <a id="ref1"></a>M. Banayeeanzade, R. Mirzaiezadeh, H. Hasani, M. S. Baghshah, "Generative vs Discriminative: Rethinking The Meta-Continual Learning," *Proceedings of the 35th International Conference on Neural Information Processing Systems (NeurIPS)*, pp. 21592–21604, 2021.
