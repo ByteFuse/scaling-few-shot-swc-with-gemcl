@@ -14,17 +14,19 @@ The mean $$\mu^c$$ is also modelled by a Gaussian, for which we assume uninforma
 
 The posterior distributions of the mean $$\mu^c$$  and the precision $$\lambda^c$$ take the form of a Normal-Gamma distribution. This allows us to calculate the posterior parameters using closed-form equations as we learn a class. The predictive distribution is a Student’s t-distribution.
 
-Figure 1 illustrates the GeMCL process. During an $$N$$-way-$$K$$-shot episode, the encoder receives the input and outputs the feature representation of that input. We then use Bayes' Theorem to obtain the posterior parameters of the class-specific distributions using the representation of the input and the prior. The posterior parameters then act as the prior for the next step. This process continues until we have iterated through the entire support set.
-
-Next, we use our model to make predictions on the query set. The encoder and the prior parameters are fixed during this step. We use the predictive distribution to select the class that assigns the highest probability to the observed data point from the query set. This loss is then used to update the encoder.
-
-In GeMCL, since each class possesses its own set of parameters and is modelled by separate Gaussians, updating the class-specific parameters for class $$1$$ has no effect on the parameters for classes $$2$$ and $$3$$. The class parameters are isolated. Therefore, GeMCL is immune to CF [[1]](#ref1)[[2]](#ref2).
-The order in which we learn the classes does not matter. We can learn the classes in any sequence and arrive at the same distribution for that class, as the class parameters are isolated. Furthermore, GeMCL makes no assumption regarding the maximum number of classes. To learn a new class, we simply learn the statistics of that class's representations.
+Figure 1 illustrates the GeMCL process. Assume we are attempting to solve classification episode containing $$N$$ classes, with $$K$$ training samples for each class, which we call the support set. This is known as an $$N$$-way-$$K$$-shot episode. During an $$N$$-way-$$K$$-shot episode, the encoder receives the input and outputs the feature representation of that input. We then use Bayes' Theorem to obtain the posterior parameters of the class-specific distributions using the representation of the input and the prior. The posterior parameters then act as the prior for the next step. This process continues until we have iterated through the entire support set.
 
 <p align="center">
   <img src="assets/images/gemcl.png" alt="money_shot" style="max-width: 900px; width: 100%;">
 </p>
 <p class="caption">Figure 1: The procedure of GeMCL.</p>
+
+Next, we use our model to make predictions on the query set. The encoder and the prior parameters are fixed during this step. We use the predictive distribution to select the class that assigns the highest probability to the observed data point from the query set. 
+
+In GeMCL, since each class possesses its own set of parameters and is modelled by separate Gaussians, updating the class-specific parameters for class $$1$$ has no effect on the parameters for classes $$2$$ and $$3$$. The class parameters are isolated. Therefore, GeMCL is immune to CF [[1]](#ref1)[[2]](#ref2).
+The order in which we learn the classes does not matter. We can learn the classes in any sequence and arrive at the same distribution for that class, as the class parameters are isolated. Furthermore, GeMCL makes no assumption regarding the maximum number of classes. To learn a new class, we simply learn the statistics of that class's representations.
+
+## Experiment
 
 ## Result
 <p align="center">
