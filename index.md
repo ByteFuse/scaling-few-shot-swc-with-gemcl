@@ -4,9 +4,10 @@ title: Scaling few-shot spoken classification with generative meta-continual lea
 ---
 
 ## Abstract
-Few-shot spoken word classification has largely been developed for applications where a small number of classes is considered, and so the potential of larger-scale few-shot spoken word classification remains untapped. This paper investigates the potential of a spoken word classifier to sequentially learn to distinguish between 1000 classes when it is given only five shots per class. We demonstrate that this scaling capability exists by training a model using the Generative Meta-Continual Learning (GeMCL) algorithm and comparing it to repeatedly trained or finetuned baselines. We find that GeMCL produces exceptionally stable performance, and although it does not always outperform a repeatedly fully-finetuned HuBERT model (FT) nor a frozen HuBERT model with a repeatedly trained classifier head (CH), it produces comparable performance to the latter while adapting 2000 times faster, having been trained less than half of the data for two orders of magnitude less time.
+Few-shot spoken word classification has largely been developed for applications where a small number of classes is considered, and so the potential of larger-scale few-shot spoken word classification remains untapped. Our work investigates the potential of a spoken word classifier to sequentially learn to distinguish between 1000 classes when it is given only five shots per class. We demonstrate that this scaling capability exists by training a model using the Generative Meta-Continual Learning (GeMCL) algorithm and comparing it to repeatedly trained or finetuned baselines. We find that GeMCL produces exceptionally stable performance, and although it does not always outperform a repeatedly fully-finetuned HuBERT model (FT) nor a frozen HuBERT model with a repeatedly trained classifier head (CH), it produces comparable performance to the latter while adapting 2000 times faster, having been trained less than half of the data for two orders of magnitude less time.
 
 ## Introduction
+
 
 ## GeMCL
 
@@ -21,7 +22,7 @@ Figure 1 illustrates the GeMCL process. Assume we are attempting to solve classi
 <p align="center">
   <img src="assets/images/gemcl.png" alt="money_shot" style="max-width: 1000px; width: 100%;">
 </p>
-<p class="caption">Figure 1: The procedure of GeMCL in a classification episode containing $$3$$ classes.</p>
+<p class="caption">Figure 1: The procedure of GeMCL in a classification episode containing 3 classes.</p>
 
 Next, we use our model to make predictions on the query set. The encoder and the prior parameters are fixed during this step. We use the predictive distribution to select the class that assigns the highest probability to the observed data point from the query set. 
 
@@ -31,7 +32,7 @@ The order in which we learn the classes does not matter. We can learn the classe
 ## Emperical Design
 
 ### Data
-We make use of the English data from the Multilingual Spoken Words corpus (MSWC) dataset [[3]](#ref3). It consists of one second-long audio segments of individual words. A train/dev/test split is provided, however, we only make sue of the test and train split. Each word contains samples in each split and we filter out any words that do not have at least five valid examples in the test and train splits. After the great filtering we are left with 12 736 words. The words are then randomly split into the meta-training set and meta-test set with a 70 : 30 split respectively. Therefore  8 915 words for meta-training and 3 821 words for meta-testing.
+We make use of the English data from the Multilingual Spoken Words corpus (MSWC) dataset [[3]](#ref3). It consists of one second-long audio segments of individual words. A train/dev/test split is provided, however, we only make sue of the test and train split. Each word contains samples in each split and we filter out any words that do not have at least five valid examples in the test and train splits. After the great filtering we are left with 12 736 words. The words are then randomly split into the meta-training set and meta-test set with a 70 : 30 split respectively. Therefore 8 915 words are used for meta-training and 3 821 words are used for meta-testing.
 
 ### GeMCL training
 To train the encoder of GeMCL we make use meta-training. Meta-training involves training the model on a distribution of tasks (in our case $$N$$-way-$$K$$-shot episodes) whereas meta-testing is evaluating whether the model can generalise to new, unseen tasks. We make use of the meta-trained words to generate the classification episodes. We meta-train for 5 000 steps on batches of 16 25-way-5-shot episodes.

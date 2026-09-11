@@ -1,5 +1,4 @@
 title: Scaling few-shot spoken word classification with generative meta-continual learning
-description: A project about an awesome paper.
 
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
