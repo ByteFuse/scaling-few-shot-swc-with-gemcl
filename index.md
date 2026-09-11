@@ -8,12 +8,12 @@ Few-shot spoken word classification has largely been developed for applications 
 
 ## GeMCL
 <p align="center">
-  <img src="assets/images/result.png" alt="money_shot" style="max-width: 900px; width: 100%;">
+  <img src="assets/images/gemcl.png" alt="money_shot" style="max-width: 900px; width: 100%;">
 </p>
 <p class="caption">Figure 1: The procedure of GeMCL.</p>
 
 ## Result
 <p align="center">
-  <img src="assets/images/gemcl.png" alt="investment_shot" style="max-width: 900px; width: 100%;">
+  <img src="assets/images/result.png" alt="investment_shot" style="max-width: 900px; width: 100%;">
 </p>
 <p class="caption">Figure 2: The average accuracy of GeMCL, full FT and the CH models with 95% confidence intervals.</p>
