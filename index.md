@@ -17,7 +17,7 @@ The posterior distributions of the mean $$\mu^c$$  and the precision $$\lambda^c
 Figure 1 illustrates the GeMCL process. Assume we are attempting to solve classification episode containing $$N$$ classes, with $$K$$ training samples for each class, which we call the support set. This is known as an $$N$$-way-$$K$$-shot episode. During an $$N$$-way-$$K$$-shot episode, the encoder receives the input and outputs the feature representation of that input. We then use Bayes' Theorem to obtain the posterior parameters of the class-specific distributions using the representation of the input and the prior. The posterior parameters then act as the prior for the next step. This process continues until we have iterated through the entire support set.
 
 <p align="center">
-  <img src="assets/images/gemcl.png" alt="money_shot" style="max-width: 900px; width: 100%;">
+  <img src="assets/images/gemcl.png" alt="money_shot" style="max-width: 1000px; width: 100%;">
 </p>
 <p class="caption">Figure 1: The procedure of GeMCL.</p>
 
