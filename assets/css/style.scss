@@ -5,6 +5,7 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Comfortaa', cursive, sans-serif;
+  color: #17C37B;
 }
 
 .btn {
@@ -22,12 +23,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .authors {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   margin-bottom: 0.3rem;
 }
 
 .affiliations {
-  font-size: 0.95rem;
-  opacity: 0.8;
+  font-size: 1.1rem;
   margin-bottom: 1.5rem;
+}
+
+body, p, li {
+  color: #1d2140;
 }
