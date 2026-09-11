@@ -17,3 +17,14 @@ Few-shot spoken word classification has largely been developed for applications 
   <img src="assets/images/result.png" alt="investment_shot" style="max-width: 900px; width: 100%;">
 </p>
 <p class="caption">Figure 2: The average accuracy of GeMCL, full FT and the CH models with 95% confidence intervals.</p>
+
+## Citation
+
+```bibtex
+@inproceedings{beyers2026scaling,
+  title={Scaling few-shot spoken classification with generative meta-continual learning},
+  author={Beyers, Louise and Ziki, Batsirayi Mupamhi and van der Merwe, Ruan},
+  booktitle={Proceedings of Interspeech 2026},
+  year={2026}
+}
+```
