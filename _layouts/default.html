@@ -16,22 +16,36 @@
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <header class="page-header" role="banner">
-      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-      {% if site.github.is_project_page %}
-        <p class="header-abstract">Few-shot spoken word classification has largely been developed for applications where a small number of classes is considered, and so the potential of larger-scale few-shot spoken word classification remains untapped. Our work investigates the potential of a spoken word classifier to sequentially learn to distinguish between 1000 classes when it is given only five shots per class. We demonstrate that this scaling capability exists by training a model using the Generative Meta-Continual Learning (GeMCL) algorithm and comparing it to repeatedly trained or finetuned baselines. We find that GeMCL produces exceptionally stable performance, and although it does not always outperform a repeatedly fully-finetuned HuBERT model (FT) nor a frozen HuBERT model with a repeatedly trained classifier head (CH), it produces comparable performance to the latter while adapting 2000 times faster, having been trained less than half of the data for two orders of magnitude less time.</p>
-        <p align="center" class="authors">
-        Louise Beyers, Batsirayi Mupamhi Ziki, Ruan van der Merwe
-        </p>
-        <p align="center" class="affiliations">
-        Bytefuse &nbsp;
-        </p>
-        <a href="https://arxiv.org/abs/2605.13075" class="btn">Paper</a>
-        <a href="https://github.com/ByteFuse" class="btn">Code</a>
-      {% endif %}
-      {% if site.show_downloads %}
-        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
-      {% endif %}
+      <div class="header-inner">
+        <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+        {% if site.github.is_project_page %}
+          <p class="header-abstract">Few-shot spoken word classification has largely been developed for applications where a small number of classes is considered, and so the potential of larger-scale few-shot spoken word classification remains untapped. Our work investigates the potential of a spoken word classifier to sequentially learn to distinguish between 1000 classes when it is given only five shots per class. We demonstrate that this scaling capability exists by training a model using the Generative Meta-Continual Learning (GeMCL) algorithm and comparing it to repeatedly trained or finetuned baselines. We find that GeMCL produces exceptionally stable performance, and although it does not always outperform a repeatedly fully-finetuned HuBERT model (FT) nor a frozen HuBERT model with a repeatedly trained classifier head (CH), it produces comparable performance to the latter while adapting 2000 times faster, having been trained less than half of the data for two orders of magnitude less time.</p>
+          <hr class="hero-divider">
+          <div class="meta-row">
+            <div class="meta-col">
+              <span class="meta-label">Resources</span>
+              <a href="https://arxiv.org/abs/2605.13075" class="resource-link">Paper</a>
+              <a href="https://github.com/ByteFuse" class="resource-link">Code</a>
+            </div>
+            <div class="meta-col">
+              <span class="meta-label">Authors</span>
+              <div class="meta-author">Louise Beyers</div>
+              <div class="meta-author">Batsirayi Mupamhi Ziki</div>
+              <div class="meta-author">Ruan van der Merwe</div>
+              <div class="meta-affiliation">Bytefuse</div>
+            </div>
+            <div class="meta-col">
+              <span class="meta-label">Published</span>
+              <div class="meta-published">Interspeech 2026</div>
+            </div>
+          </div>
+          <hr class="hero-divider">
+        {% endif %}
+        {% if site.show_downloads %}
+          <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+          <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+        {% endif %}
+      </div>
     </header>
 
     <main id="content" class="main-content" role="main">
