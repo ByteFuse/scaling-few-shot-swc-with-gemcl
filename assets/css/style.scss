@@ -42,6 +42,7 @@ h2, h3, h4, h5, h6 {
   font-size: 1rem;
   line-height: 1.75;
   margin-bottom: 0;
+  text-align: left;
 }
 
 .hero-divider {
@@ -52,7 +53,7 @@ h2, h3, h4, h5, h6 {
 
 .meta-row {
   display: flex;
-  gap: 4rem;
+  justify-content: space-between;
   align-items: flex-start;
   padding: 0.5rem 0;
 }
@@ -67,7 +68,7 @@ h2, h3, h4, h5, h6 {
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #eaebf0;
+  color: #888;
   font-weight: bold;
   margin-bottom: 0.4rem;
 }
