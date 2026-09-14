@@ -2,6 +2,7 @@
 ---
 
 @import "{{ site.theme }}";
+
 h1 {
   font-family: 'Comfortaa', cursive, sans-serif;
 }
@@ -11,40 +12,91 @@ h2, h3, h4, h5, h6 {
   color: #17C37B;
 }
 
-.authors, .affiliations {
-  color: white;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 5px;
-  background-color:#eaebf0ff;
+/* Hero overrides — white background, dark text */
+.page-header {
+  background: #ffffff !important;
+  background-image: none !important;
   color: #1d2140 !important;
-  border-radius: 6px;
-  text-decoration: none;
+  text-align: left;
+  padding: 3rem 6rem;
+}
+
+.header-inner {
+  max-width: 860px;
+}
+
+.project-name {
+  color: #1d2140 !important;
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.header-abstract {
+  color: #1d2140;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+.hero-divider {
+  border: none;
+  border-top: 1.5px solid #17C37B;
+  margin: 1.5rem 0;
+}
+
+.meta-row {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+}
+
+.meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.meta-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
   font-weight: bold;
-}
-.btn:hover {
-  background-color: rgb(127, 128, 130);
+  margin-bottom: 0.4rem;
 }
 
-.authors {
-  font-size: 1.3rem;
-  margin-bottom: 0.3rem;
+.resource-link {
+  color: #FF8811 !important;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.affiliations {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+.resource-link:hover {
+  text-decoration: underline;
+}
+
+.meta-author {
+  color: #1d2140;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.meta-affiliation {
+  color: #555;
+  font-size: 0.88rem;
+  margin-top: 0.15rem;
+}
+
+.meta-published {
+  color: #1d2140;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 body, p, li {
   color: #1d2140;
-}
-
-.project-tagline {
-  color: white;
 }
 
 .caption {
