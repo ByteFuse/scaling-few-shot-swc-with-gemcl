@@ -12,17 +12,23 @@ h2, h3, h4, h5, h6 {
   color: #17C37B;
 }
 
+.main-content h2 {
+  border-bottom: 1.5px solid #eaebf0;
+  padding-bottom: 0.5rem;
+}
+
 /* Hero overrides — white background, dark text */
 .page-header {
   background: #ffffff !important;
   background-image: none !important;
   color: #1d2140 !important;
-  text-align: left;
-  padding: 3rem 6rem;
+  padding: 3rem 2rem;
 }
 
 .header-inner {
   max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .project-name {
@@ -61,7 +67,7 @@ h2, h3, h4, h5, h6 {
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #888;
+  color: #eaebf0;
   font-weight: bold;
   margin-bottom: 0.4rem;
 }

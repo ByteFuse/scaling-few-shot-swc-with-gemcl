@@ -2,9 +2,9 @@
 layout: default
 title: Scaling few-shot spoken classification with generative meta-continual learning
 ---
-Spoken word classification
+Keyword spotting (KWS) is one the applications of spoken word classification. It is ideal in KWS for the user to define their own keywords, and for the KWS model to only need a few examples to learn the new keywords. It would be cumbersome if the user had to repeat the new keyword many times for the model to learn it.
 
-Keyword spotting (KWS) is one the applications of spoken word classification. It is ideal in KWS for the user to define their own keywords, and for the KWS model to only need a few examples to learn the new keywords. It would be cumbersome if the user had to repeat the new keyword many times.
+In the KWS, models often have
 
 ## GeMCL
 
