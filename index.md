@@ -4,14 +4,14 @@ title: Scaling few-shot spoken classification with generative meta-continual lea
 ---
 Keyword spotting (KWS) is one the applications of spoken word classification. It is ideal in KWS for the user to define their own keywords, and for the KWS model to only need a few examples to learn the new keywords. It would be cumbersome if the user had to repeat the new keyword many times for the model to learn it.
 
-In the KWS, models often deal with learning few words as they are used on edge devices. Even with few words there are still limitations in performance [cite Efficient Continual Learning in Keyword Spotting using Binary Neural Networks paper]. 
+In the KWS, models often deal with learning few words as they are used on edge devices. Even with few words there are still limitations in performance [[4]](#ref4). 
 
 Ideally classifiers in the the few-shot continually learning scenario are able to scale to large amounts of classes which extends the scope of problems they can be applied to. 
-However, in practice it is common to make use of foundation models such as HubERT [citation for hubert]. As new data arrives the model is often finetuned/trained from scratch on the entire dataset in order to prevent catrastphic forgetting. This process is computationally expensive.
+However, in practice it is common to make use of foundation models such as HuBERT [[5]](#ref5). As new data arrives the model is often finetuned/trained from scratch on the entire dataset in order to prevent catrastphic forgetting. This process is computationally expensive.
 
-Meta-continual learning is a framework that potentially allows us to train classifiers such that it is not necessary to finetune from scratch and prevent catastrophic forgetting. Generative Meta-Continual Learning (GeMCL) [[1]](#ref1) is an algorithm that fits into this framework. 
+Meta-continual learning is a framework that potentially allows us to train classifiers such that it is not necessary to finetune from scratch and prevent catastrophic forgetting. It is defined as learning how to continually learn [[6]](#ref6). Algorithms in this framework are often trained from scratch across a distribution of tasks in order to generalise to unseen tasks. This training process is computationally expensive, but this upfront cost is offset at inference time through rapid adaptation to new tasks and new data. Generative Meta-Continual Learning (GeMCL) [[1]](#ref1) is an algorithm that fits into this framework.
 
-To the best of our knowledge, GeMCL has yet to be applied to audio data. Therefore, the purpose of this work is as follows: In a few-shot continual learning setting scaled to 1000 classes, is it more practical to continually finetune HuBERT, or to meta-train GeMCL from scratch?
+To the best of our knowledge, GeMCL has yet to be applied to audio data. Therefore, our research question is as follows: In a few-shot continual learning setting scaled to 1000 classes, is it more practical to continually finetune HuBERT, or to meta-train GeMCL from scratch?
 
 
 ## GeMCL
@@ -48,7 +48,7 @@ We use two methods of adapting the HuBERT baseline: 1.) full finetuning 2.) trai
 
 ### Hyperparameters
 
-## Implementation Details
+<!-- ## Implementation Details
 
 ```yaml
 # All three (GeMCL, Full FT, CH)
@@ -88,7 +88,7 @@ trainable_params: all
 # CH
 learning_rate: 3e-4
 trainable_params: projector + classifier head only
-```
+``` -->
 
 ## Result
 <p align="center">
@@ -123,6 +123,12 @@ In conclusion, we conclude.
 2. <a id="ref2"></a>S. Lee, H. Jeon, J. Son, G. Kim, "Learning to Continually Learn with the Bayesian Principle," *International Conference on Machine Learning (ICML)*, 2024.
 
 3. <a id="ref3"></a>M. Mazumder, S. Chitlangia, C. Banbury, Y. Kang, J. M. Ciro, K. Achorn, D. Galvez, M. Sabini, P. Mattson, D. Kanter, G. Diamos, P. Warden, J. Meyer, V. Janapa Reddi, "Multilingual Spoken Words Corpus," *Thirty-fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track (Round 2)*, 2021. [[link]](https://openreview.net/forum?id=c20jiJ5K2H)
+
+4. <a id="ref4"></a>Q. N. Vu, L. S. Martinez-Rau, Y. Zhang, N.-D. Tran, B. Oelmann, M. Magno, and S. Bader, "Efficient Continual Learning in Keyword Spotting using Binary Neural Networks," *2025 IEEE Sensors Applications Symposium (SAS)*, pp. 1–6, 2025.
+
+5. <a id="ref5"></a>W.-N. Hsu, B. Bolte, Y.-H. H. Tsai, K. Lakhotia, R. Salakhutdinov, and A. Mohamed, "HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction of Hidden Units," *IEEE/ACM Transactions on Audio, Speech, and Language Processing*, vol. 29, pp. 3451–3460, 2021.
+
+6. <a id="ref6"></a>J. Son, S. Lee, and G. Kim, "When Meta-Learning Meets Online and Continual Learning: A Survey," *IEEE Transactions on Pattern Analysis and Machine Intelligence*, vol. 47, no. 1, pp. 413–432, 2024.
 
 ## Citation
 
