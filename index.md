@@ -4,10 +4,10 @@ title: Scaling few-shot spoken classification with generative meta-continual lea
 ---
 Keyword spotting (KWS) is one of the applications of spoken word classification. It is ideal in KWS for the user to define their own keywords, and for the KWS model to only need a few examples to learn the new keywords. It would be cumbersome if the user had to repeat the new keyword many times for the model to learn it.
 
-In the KWS, models often deal with learning few words as they are used on edge devices. Even with few words there are still limitations in performance [[4]](#ref4). 
+In the KWS, models often deal with learning few words as they are used on edge devices. Even with few words, there are still limitations in performance [[4]](#ref4). 
 
-Ideally, classifiers in the few-shot continual learning scenario are able to scale to large numbers of classes which extends the scope of problems they can be applied to. 
-However, in practice it is common to make use of foundation models such as HuBERT [[5]](#ref5). As new data arrives the model is often finetuned/trained from scratch on the entire dataset in order to prevent catastrophic forgetting. This process is computationally expensive.
+Ideally, classifiers in the few-shot continual learning scenario are able to scale to large numbers of classes which extend the scope of problems they can be applied to. 
+However, in practice it is common to make use of foundation models such as HuBERT [[5]](#ref5). As new data arrives, the model is often finetuned/trained from scratch on the entire dataset in order to prevent catastrophic forgetting. This process is computationally expensive.
 
 Meta-continual learning is a framework that potentially allows us to train classifiers without needing to finetune from scratch, while still preventing catastrophic forgetting. It is defined as learning how to continually learn [[6]](#ref6). Algorithms in this framework are often trained from scratch across a distribution of tasks in order to generalise to unseen tasks. This training process is computationally expensive, but this upfront cost is offset at inference time through rapid adaptation to new tasks and new data. Generative Meta-Continual Learning (GeMCL) [[1]](#ref1) is an algorithm that fits into this framework.
 
@@ -16,7 +16,7 @@ To the best of our knowledge, GeMCL has yet to be applied to audio data. Therefo
 
 ## GeMCL
 
-To answer our research question it is important that we first start with GeMCL. GeMCL [[1]](#ref1) uses a generative Bayesian classifier and models the distribution of each class. We assume each class, $$c$$, is modelled by a Gaussian distribution with mean $$\mu^c$$ and precision $$\lambda^c$$. The class conditional Gaussians form a Gaussian Mixture Model (GMM).
+To answer our research question, it is important that we first start with GeMCL. GeMCL [[1]](#ref1) uses a generative Bayesian classifier and models the distribution of each class. We assume each class, $$c$$, is modelled by a Gaussian distribution with mean $$\mu^c$$ and precision $$\lambda^c$$. The class conditional Gaussians form a Gaussian Mixture Model (GMM).
 
 The mean $$\mu^c$$ is also modelled by a Gaussian, for which we assume uninformative priors. The precision is modelled by a Gamma distribution. The posterior distributions of the mean $$\mu^c$$  and the precision $$\lambda^c$$ take the form of a Normal-Gamma distribution. This allows us to calculate the posterior parameters using closed-form equations as we learn a class. The predictive distribution is a Student’s t-distribution.
 
@@ -39,9 +39,9 @@ To make predictions on the query set, we make use of the predictive distribution
 We make use of the English data from the Multilingual Spoken Words corpus (MSWC) dataset [[3]](#ref3). It consists of one-second audio segments of individual words. A train/dev/test split is provided; however, we only make use of the test and train split. Each word contains samples in each split and we filter out any words that do not have at least five valid examples in the test and train splits. After the great filtering we are left with 12 736 words. The words are then randomly split into the meta-training set and meta-test set with a 70 : 30 split respectively. Therefore 8 915 words are used for meta-training and 3 821 words are used for meta-testing.
 
 ### Model training and evaluation
-To train the encoder of GeMCL we make use of meta-training. Meta-training involves training the model on a distribution of tasks (in our case $$N$$-way-$$K$$-shot episodes) whereas meta-testing is evaluating whether the model can generalise to new, unseen tasks. We make use of the meta-trained words to generate the classification episodes. We meta-train for 5 000 steps. Each step involves a batch size of 16 25-way-5-shot episodes. The performance on the query set of the meta-training words is then used to update the encoder. 
+To train the encoder of GeMCL, we make use of meta-training. Meta-training involves training the model on a distribution of tasks (in our case $$N$$-way-$$K$$-shot episodes) whereas meta-testing is evaluating whether the model can generalise to new, unseen tasks. We make use of the meta-trained words to generate the classification episodes. We meta-train for 5 000 steps. Each step involves a batch size of 16 25-way-5-shot episodes. The performance on the query set of the meta-training words is then used to update the encoder. 
 
-We use two methods of adapting the HuBERT baseline: 1.) full finetuning; 2.) training a classifier head and projector on a frozen backbone. The training runs start from the HuBERT base checkpoint. The model parameters range from 94 575 001 (for 25 classes) to 94 825 576 (for 1000 classes). We train both baselines for 200 epochs if the number of classes is below 300, and 500 epochs if the number of classes is above 300.
+We use two methods of adapting the HuBERT baseline: 1.) full finetuning; 2.) training a classifier head and projector on a frozen backbone. The model parameters range from 94 575 001 (for 25 classes) to 94 825 576 (for 1000 classes). We train both baselines for 200 epochs if the number of classes is below 300, and 500 epochs if the number of classes is above 300.
 Each training run starts from the HuBERT base checkpoint, for sets of classes in the range [25, 1000] where the number of classes is incremented by 25 and each class has 5 training samples.
 
 <p align="center">
@@ -49,7 +49,7 @@ Each training run starts from the HuBERT base checkpoint, for sets of classes in
 </p>
 <p class="caption">Figure 2: A comparison of the training and evaluation flows of the baselines and GeMCL.</p>
 
-GeMCL is evaluated on the meta-test words, whereas HuBERT is trained and evaluated on the meta-test words. During this evaluation procedure, the encoder of GeMCL is fixed and uses the support set of the meta-test words to learn the class statistics of the meta-test words. HuBERT and GeMCL are evaluated on the query set of the meta-test words in a continual learning fashion, illustrated in Figure 2.
+GeMCL is evaluated on the meta-test words, whereas HuBERT is trained and evaluated on the meta-test words. During this evaluation procedure, the encoder of GeMCL is fixed and uses the support set of the meta-test words to learn the class statistics of the meta-test words. The HuBERT baselines and GeMCL are evaluated on the query set of the meta-test words in a continual learning fashion, illustrated in Figure 2.
 
 <!-- ### Hyperparameters -->
 
@@ -95,8 +95,8 @@ learning_rate: 3e-4
 trainable_params: projector + classifier head only
 ``` -->
 
-## Result
-Figure 3 shows the accuracy of the baselines and GeMCL. The results indicate that the full FT baseline is able to outperform GeMCL and the CH model for most of the stages of continual learning. However, take note of the fluctuation in performance and the confidence interval of the full FT baseline. This indicates that the full FT is not stable. The CH model and GeMCL model are more stable. 
+## Results and Discussion
+Figure 3 shows the accuracy of the baselines and GeMCL. The results indicate that the full FT baseline is able to outperform GeMCL and the CH model for most of the stages of continual learning. However, take note of the fluctuation in performance and the confidence interval of the full FT baseline. This indicates that the full FT is not stable. The CH model and GeMCL model are more stable, and this stability observation is also shown in Table 1.
 
 
 <p align="center">
@@ -104,7 +104,6 @@ Figure 3 shows the accuracy of the baselines and GeMCL. The results indicate tha
 </p>
 <p class="caption">Figure 3: The average accuracy of GeMCL, full FT and the CH models with 95% confidence intervals.</p>
 
-This stability observation is also shown in Table 1.
 
 |  | GeMCL | CH | Full FT |
 |---|:---:|:---:|:---:|
@@ -113,7 +112,8 @@ This stability observation is also shown in Table 1.
 
 <p class="caption">Table 1: Per-word volatility of classification accuracy. Given accuracy in %, volatility is the mean absolute amount that accuracy changes between consecutive continual learning steps.</p>
 
-The CH model does outperform GeMCL at 1000 classes by 2% but GeMCL takes less time for training, tuning and few-shot adaptation as highlighted in Table 2.
+The CH model does outperform GeMCL at 1000 classes by 2%, but GeMCL takes less time for training, tuning and few-shot adaptation as highlighted in Table 2. Notably, GeMCL's few-shot adaptation is over 2000 times faster than the CH baseline.
+<!-- As a remiandGeMCL is meta-trained on 25-class episodes; we hypothesise that meta-training on episodes with more classes would further improve accuracy at scale. -->
 
 |  | GeMCL | CH | Full FT |
 |---|:---:|:---:|:---:|
@@ -126,7 +126,7 @@ The CH model does outperform GeMCL at 1000 classes by 2% but GeMCL takes less ti
  <!-- As shown, full finetuning is known to be sensitive to the choice of hyperparameters, and so it trades stability for performance. CH is less flexible but, it is more stable, since no previously-trained parameters are updated. -->
 
 ## Conclusion
-We evaluated GeMCL and the HuBERT baselines on 5-shot spoken word classification tasks, scaling up to 1000 classes in a continual learning setting. CH baseline outperformed GeMCL at 1000 classes; however, GeMCL did not undergo any finetuning or retraining as new words arrived. As new words arrived, GeMCL simply performed closed-form updates to word-class statistics. GeMCL was also more stable than the full FT baseline. Therefore in a few-shot continual learning setting scaled to 1000 classes, it is more practical to meta-train GeMCL from scratch.
+We evaluated GeMCL and the HuBERT baselines on 5-shot spoken word classification tasks, scaling up to 1000 classes in a continual learning setting. CH baseline outperformed GeMCL at 1000 classes; however, GeMCL did not undergo any finetuning or retraining as new words arrived. As new words arrived, GeMCL simply performed closed-form updates to word-class statistics. GeMCL was also more stable than the full FT baseline. Therefore, in a few-shot continual learning setting scaled to 1000 classes, it is more practical to meta-train GeMCL from scratch.
 
 ## References
 
